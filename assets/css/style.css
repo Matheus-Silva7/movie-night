@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+:root {
+  --primary-color: #22254b;
+  --secondary-color: #3d416b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #111;
+  font-family: 'Poppins', sans-serif;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+a{
+  text-decoration: none;
+}
+
+button{
+  border: 0;
+}
+
+span {
+  font-size: x-large;
+}
+
+img {
+  box-shadow: 0 1px 2px #0003;
+  width: 100%;
+}
+
+
+::-webkit-scrollbar {
+  width: 12px; 
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 6px; 
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color); 
+}
+
+.swiper-slide {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilize o contêiner pai (div) */
+.img-container {
+  position: relative;
+  display: inline-block;
+
+  /* Para que o contêiner ocupe apenas o espaço necessário */
+}
+.img-container img{
+ width: 100vw;
+ height: 95vh;
+
+}
+.img-container::before {
+  content: "";
+  position: absolute; /* Posiciona o pseudo-elemento acima do conteúdo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(39, 17, 109, 0.6));
+  z-index: 1; /* Define uma ordem de empilhamento acima da imagem */
+}
+
+.banner{
+  width: 100vw;
+}
+
+/* Estilize o contêiner de texto (div.text) */
+.img-container .items {
+  position: absolute;
+  bottom: 0;
+  margin: 0 0 5% 2% ;
+  /* Coloque o contêiner de texto na parte inferior do contêiner pai */
+  left: 0;
+  /* Coloque o contêiner de texto na parte esquerda do contêiner pai */
+  color: white;
+  /* Escolha a cor de texto desejada */
+  /* Defina um fundo com transparência */
+  padding: 5px;
+  /* Adicione preenchimento para legibilidade */
+  width: 100vw;
+  /* Faça o contêiner de texto ocupar toda a largura do pai */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+}
+.img-container .text{
+  display: flex;
+  justify-content: center;
+  align-items:baseline;
+  flex-direction: column;
+  height: 14vh;
+  align-items: center;
+  width: 60vw;
+  margin-bottom: 2%;
+}
+
+.img-container .button-add{
+  width: 18vw;
+}
+
+.btn-color{
+  background-color: transparent;
+}
+
+.btn-color:hover{
+  background-color: #ffffff28;
+}
+
+.img-container .text #verDetalhes{
+  font-size: medium;
+  font-size: 1.4rem;
+}
+
+/* Estilize o h3 dentro do contêiner de texto */
+.img-container .text h3 , h5 {
+  align-self: flex-start;
+  font-family: 'Inter', sans-serif;
+  text-shadow:  1.2px 1.2px black;
+  color: rgb(236, 236, 236);
+  
+  /* Remover margens padrão do h3 */
+}
+.img-container .text h3{
+  font-size: clamp(2.5em, 1.8em + 2vw, 2.3em);
+}
+.img-container .text h5{
+  margin-bottom: 20px;
+}
+
+/* Estilize o parágrafo (p) dentro do contêiner de texto */
+.img-container .text p {
+  margin: 0;
+  /* Remover margens padrão do p */
+  max-width: 80%;
+  /* Limitar a largura para evitar que o texto se estenda muito */
+}
+/* Estilização da navbar */
+
+.navbar {
+  background-color: black !important;
+  height: 12vh;
+  width: 100%;
+}
+
+.fixed-top {
+  position: relative;
+}       
+
+.navbar-brand img {
+  width: 9vw;
+  padding-left: 10px;
+}
+
+.search {
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  color: #fff;
+}
+
+.search::placeholder  {
+  color: #7378c5;
+}
+
+
+.input_search_icon{
+  color:var(--primary-color) ;
+}
+
+.search:focus {
+  outline: none;
+  background-color: transparent;
+}
+
+.input_search_icon{
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  border-radius: 20px;
+}
+
+.input_search_icon:hover{
+  background-color: #7379c5c5;
+  color: white;
+  transition: 0.3s;
+}
+
+
+.input-group{
+  width: 30%;
+  margin-right: 5%;
+}
+.navbar-nav{
+  margin-left: 20%;
+}
+
+.fs-5{
+  font-size: 22px !important;
+}
+.dropdown-menu{
+  background-color:#333333f8;
+}
+
+.dropdown-item{
+  color: white;
+}
+
+.px-5{
+  padding: 0px !important;
+}
+
+.azul{
+  background-color: #341ac9c9;
+}
+
+.nav-item{
+  width: 12vw;
+}
+
+/* style cards movie */
+
+section {
+  padding: 3%;
+}
+
+
+.movie-category {
+  color: white;
+  padding: 15px 0;
+}
+
+.movie-list {
+  position: relative;
+}
+
+.movie-slide {
+  overflow-x: hidden;
+}
+
+.btn-arrow {
+  position: absolute;
+  top: 0;
+  width: 30px;
+  height: 100%;
+  background: #00000080;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.scroll-left {
+  left: 0;
+}
+
+.scroll-right {
+  right: 0;
+}
+
+.container-movie {
+  width: 90vw;
+}
+
+.movie-list .releases-movies,
+.movie-list .rated-movies,
+.movie-list .series,
+.movie-list .rated-series {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  /* Alinhar verticalmente os filmes e os botões */
+}
+
+.movie-image img {
+  width: 220px;
+}
+
+.movie-image img:hover{
+  width: 230px;
+}
+
+p {
+  color: white;
+  text-align: center;
+  font-size: 15px;
+}
+
+/* footer style*/
+
+footer {
+  background-color: black;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 0;
+}
+
+.img-footer img {
+  width: 120px;
+  padding: 10px;
+}
+
+.footer-list {
+  display: flex;
+  gap: 50px;
+}
+
+.footer-list .text-footer {
+  list-style: none;
+}
+
+.text-footer a {
+  color: white;
+}
+
+.text-footer a:hover {
+  color: #ccc;
+}
+
+#main-fav{
+  display: none;
+}
+#main-search{
+  display: none;
+  position: relative;
+  width: 100%;
+}
+#main-search img{
+  width: 300px;
+}
+
+#main-search p{
+  text-align: center;
+}
