@@ -15,10 +15,15 @@ header {
 
 
 main {
+display: flex;
+flex-direction: column;
+ padding-bottom: 5%;
+}
+
+.movieList{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
- padding-bottom: 5%;
 }
 
 .fixed-top {

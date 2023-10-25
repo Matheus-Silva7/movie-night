@@ -1,17 +1,8 @@
 const API_URL = 'https://api.themoviedb.org/3/trending/movie/week?api_key=c6c380f82908eab9870589641a012358&language=pt-BR&page=1'
 const IMG_PATH = 'https://image.tmdb.org/t/p/w1280'
-const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query="'
 
 const main = document.getElementById('main')
-const form = document.getElementById('form')
-const search = document.getElementById('search')
 
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
-const moviesContainer = document.querySelector('.movies');
-let currentIndex = 0;
-
-// Get initial movies
 getMovies(API_URL)
 
 async function getMovies(url) {
@@ -23,15 +14,14 @@ async function getMovies(url) {
 
 function showMovies(movies) {
     main.innerHTML = ''
-
+    const movieList = document.createElement('div')
+    movieList.classList.add('movieList')
     movies.forEach((movie) => {
         const { title, poster_path, vote_average, overview } = movie
 
         const movieEl = document.createElement('div')
         movieEl.classList.add('movie')
 
-
-            
             movieEl.innerHTML = `
             <img src="${IMG_PATH + poster_path}" alt="${title}">
             <div class="movie-info">
@@ -43,10 +33,11 @@ function showMovies(movies) {
           ${overview}
         </div>
         `
-        main.appendChild(movieEl)
+        movieList.appendChild(movieEl)
+        main.appendChild(movieList);
       }
     )}
-    
+    /* main.innerHTML += `<button>aaaa mais</button>` */
 
 function getClassByRate(vote) {
     if(vote >= 8) {
@@ -58,16 +49,3 @@ function getClassByRate(vote) {
     }
 }
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault()
-
-    const searchTerm = search.value
-
-    if(searchTerm && searchTerm !== '') {
-        getMovies(SEARCH_API + searchTerm)
-
-        search.value = ''
-    } else {
-        window.location.reload()
-    }
-})
