@@ -166,7 +166,7 @@ img {
 
 .navbar {
   background-color: black !important;
-  height: 12vh;
+  height: 17vh;
   width: 100%;
 }
 
@@ -175,8 +175,9 @@ img {
 }       
 
 .navbar-brand img {
-  width: 9vw;
+  width: 11vw;
   padding-left: 10px;
+  margin-left:15% ;
 }
 
 .search {
@@ -307,8 +308,8 @@ section {
 }
 
 .movie-image img:hover{
-  width: 230px;
-}
+  width: 225px;
+  box-shadow: rgba(255, 255, 255, 0.6) 0px 0px 12px;}
 
 p {
   color: white;
@@ -363,4 +364,10 @@ footer {
 
 #main-search p{
   text-align: center;
+}
+
+
+/* Se você quiser definir uma altura mínima também */
+#exampleModalCenter .modal-content {
+  height: 70vh; /* Defina a altura mínima desejada */
 }

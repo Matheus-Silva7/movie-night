@@ -49,10 +49,73 @@ function createCard(movie, container) {
                     </div>
                     <h2>Overview</h2>
                     <p>${movie.overview}</p>
-                    <button type="button" id="verDetalhes" class="btn btn-secondary btn-lg btn-light verTrailer">Ver trailer</button>
+                    <button type="button" id="verDetalhes" class="btn btn-secondary btn-lg btn-light verTrailer" data-toggle="modal" data-target="#exampleModalCenter">Ver trailer</button>
                 </div>
               
             </div>`;
+        const botao = document.querySelector(".botaoLado");
+
+        botao.addEventListener('click', (event) => {
+            const botao = event.target;
+        
+            if (botao.classList.contains("azul")) {
+                const index = favorites.findIndex(fav => fav.id == movie.id);
+                if (index !== -1) {
+                    favorites.splice(index, 1);
+                }
+            } else {
+              
+                favorites.push( movie);
+                console.log(favorites)
+
+                renderFavorites()
+            }
+            
+         
+        });
+        
+        
+        function renderFavorites() {
+            mainfav.innerHTML = '';
+            favorites.forEach(element => {
+              const listFav = document.createElement('div');
+              listFav.classList.add('fav-list');
+              listFav.innerHTML = `
+                <img src="https://image.tmdb.org/t/p/original/${element.poster_path}" alt="${element.title}">
+                <div class="movie-info">
+                  <h3>${element.title}</h3>
+                  <span class="${getClassByRate(element.vote_average)}">${parseFloat(element.vote_average).toFixed(1)}</span>
+                </div>
+                <div class="overview">
+                  <h3>Overview</h3>
+                  ${element.overview}
+                </div>
+              `;
+              mainfav.appendChild(listFav);
+
+              return favorites
+            });
+          
+            mainfav.style.display = "none";
+          
+            // Event listener para exibir favoritos
+            const listButton = document.querySelector('.active-list');
+            const activeMain = document.querySelector('.active-main');
+            listButton.addEventListener('click', () => {
+              mainfav.style.display = "flex";
+              main.style.display = "none";
+              mainSearch.style.display = "none"
+            });
+            activeMain.addEventListener('click', () => {
+              mainfav.style.display = "none";
+              main.style.display = "flex";
+            });
+          }
+          
+        
+        
+        
+        
 
         const movieContainer = document.querySelector('.movie-container');
         movieContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`;
@@ -63,7 +126,7 @@ function createCard(movie, container) {
         const btnTrailer = document.querySelector('.verTrailer')
 
         btnTrailer.addEventListener('click', () => {
-            
+
             fetch(`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=c6c380f82908eab9870589641a012358&language=pt-BR`)
                 .then(response => {
                     if (!response.ok) {
@@ -72,13 +135,32 @@ function createCard(movie, container) {
                     return response.json();
                 }).then(data => {
                     const trailers = data.results;
-                    if (trailers.length > 0) {
-                        const youtubeWatch = "https://www.youtube.com/watch?v=" + trailers[0].key;
-                        window.open(youtubeWatch, '_blank');
-                    } else {
-                       alert("Nenhum trailer disponível ou encontrado")
-                    }
-                })
+                   
+                    const modal = document.createElement("div");
+                    modal.classList.add("modal" , "fade")
+                    modal.id ="exampleModalCenter" ;
+                    modal.innerHTML=`<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content modal-lg">
+                      <div class="modal-body">
+                      <div class="container-fluid">
+                      <iframe width="700" height="350" src="https://www.youtube.com/embed/${trailers[0].key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                      </div>
+                    </div>
+                  </div>`
+                    console.log(trailers[0].key)
+                  document.body.appendChild(modal)
+                  modal.classList.add("show")
+                  modal.style.display="block"
+                    
+                  
+                }
+                )
+            
         })
     });
 }
