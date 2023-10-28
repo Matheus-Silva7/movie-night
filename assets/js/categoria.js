@@ -1,25 +1,16 @@
-const API_KEY = 'c6c380f82908eab9870589641a012358';
+const apiKey = 'c6c380f82908eab9870589641a012358';
 const IMG_PATH = 'https://image.tmdb.org/t/p/w1280'
+const mainfav = document.getElementById('main-fav');
 const main = document.getElementById('main');
+const mainSearch = document.getElementById('main-search');
 let page = 1
 
-/* const btnMore = document.querySelector('.btn-more')
-
-btnMore.addEventListener('click', ()=>{
-    page ++
-    fetchMoviesByCategory()
-})  */
-
 async function fetchMoviesByCategory() {
-    try {
-        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${idCategoria}&language=pt-BR&page=${page}`);
+        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${idCategoria}&language=pt-BR&page=${page}`);
         const data = await response.json();
         showMovies(data.results);
-    } catch (error) {
-        console.error(error);
-    }
 }
-
+const pageH4 = document.querySelector('.page')
 function showMovies(movies) {
     main.innerHTML = '';
     const movieList = document.createElement('div')
@@ -42,9 +33,40 @@ function showMovies(movies) {
         movieList.appendChild(movieEl)
         main.appendChild(movieList);
     });
-    main.innerHTML += `<button class="btn-more">aaaa mais</button>`
-}
+    main.innerHTML += `
+    <div class = "btnpage">
+    <button class="btn-prev">prev</button>
+    <p>${page}</p>
+    <button class="btn-next">next</button>
+    </div>
+    `
+    const btnNext = document.querySelector('.btn-next')
+    const btnprev = document.querySelector('.btn-prev')
+    pageH4.textContent = `Página: ${page}`
+    btnprev.addEventListener('click', () => {
+        if (page > 1) {
+            page--
+            fetchMoviesByCategory()
+            //rola a pagina para o inicio
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+            pageH4.textContent = `Página: ${page}`
+        }
+    })
 
+    btnNext.addEventListener('click', () => {
+        page++
+        fetchMoviesByCategory()
+        //rola a pagina para o inicio
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+        pageH4.textContent = `Página: ${page}`
+    })
+}
 
 function getClassByRate(vote) {
     if (vote >= 8) {

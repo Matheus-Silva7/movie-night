@@ -14,7 +14,7 @@ header {
 }
 
 
-main {
+#main {
 display: flex;
 flex-direction: column;
  padding-bottom: 5%;
@@ -37,8 +37,12 @@ flex-direction: column;
   padding: 30px 0;
   text-align: center;
   margin: 0 auto;
- 
   color: #ededed;
+}
+
+.page{
+  color: white;
+  padding: 20px;
 }
 
 .movie {
@@ -109,3 +113,28 @@ flex-direction: column;
   transform: translateY(0);
 }
 
+.btnpage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.btnpage button{
+  width: 50px;
+  height: 30px;
+  border: 0;
+}
+
+.btnpage button:hover{
+  background-color: #aaa;
+  transition: 0.3s;
+}
+
+.btnpage p{
+  margin-bottom: 0;
+  font-size: 15px;
+  color: black;
+  padding: 0px 8px;
+  background-color: white;
+}

@@ -57,30 +57,27 @@ function createCard(movie, container) {
 
         botao.addEventListener('click', (event) => {
             const botao = event.target;
-        
+
             if (botao.classList.contains("azul")) {
                 const index = favorites.findIndex(fav => fav.id == movie.id);
                 if (index !== -1) {
                     favorites.splice(index, 1);
                 }
             } else {
-              
-                favorites.push( movie);
+
+                favorites.push(movie);
                 console.log(favorites)
 
                 renderFavorites()
             }
-            
-         
         });
-        
-        
+
         function renderFavorites() {
             mainfav.innerHTML = '';
             favorites.forEach(element => {
-              const listFav = document.createElement('div');
-              listFav.classList.add('fav-list');
-              listFav.innerHTML = `
+                const listFav = document.createElement('div');
+                listFav.classList.add('listM');
+                listFav.innerHTML = `
                 <img src="https://image.tmdb.org/t/p/original/${element.poster_path}" alt="${element.title}">
                 <div class="movie-info">
                   <h3>${element.title}</h3>
@@ -91,31 +88,26 @@ function createCard(movie, container) {
                   ${element.overview}
                 </div>
               `;
-              mainfav.appendChild(listFav);
+                mainfav.appendChild(listFav);
 
-              return favorites
+                return favorites
             });
-          
+
             mainfav.style.display = "none";
-          
+
             // Event listener para exibir favoritos
             const listButton = document.querySelector('.active-list');
             const activeMain = document.querySelector('.active-main');
             listButton.addEventListener('click', () => {
-              mainfav.style.display = "flex";
-              main.style.display = "none";
-              mainSearch.style.display = "none"
+                mainfav.style.display = "flex";
+                main.style.display = "none";
+                mainSearch.style.display = "none"
             });
             activeMain.addEventListener('click', () => {
-              mainfav.style.display = "none";
-              main.style.display = "flex";
+                mainfav.style.display = "none";
+                main.style.display = "flex";
             });
-          }
-          
-        
-        
-        
-        
+        }
 
         const movieContainer = document.querySelector('.movie-container');
         movieContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`;
@@ -135,11 +127,11 @@ function createCard(movie, container) {
                     return response.json();
                 }).then(data => {
                     const trailers = data.results;
-                   
+
                     const modal = document.createElement("div");
-                    modal.classList.add("modal" , "fade")
-                    modal.id ="exampleModalCenter" ;
-                    modal.innerHTML=`<div class="modal-dialog modal-dialog-centered modal-lg " role="document">
+                    modal.classList.add("modal", "fade")
+                    modal.id = "exampleModalCenter";
+                    modal.innerHTML = `<div class="modal-dialog modal-dialog-centered modal-lg " role="document">
                     <div class="modal-content modal-lg">
                       <div class="modal-body">
                       <div class="container-fluid">
@@ -147,32 +139,30 @@ function createCard(movie, container) {
                     </div>
                       </div>
                       <div class="modal-footer">
+                      <h6 style="color: white;">${movie.title || movie.name}<h6 style="color: white;">
                     <button type="button" id="closeModal" class="btn btn-secondary " data-dismiss="modal">Close</button>
-
                       </div>
                     </div>
                   </div>`
 
-                  document.body.appendChild(modal)
+                    document.body.appendChild(modal)
 
-                
+
                     console.log(trailers[0].key)
-                  
-                 
 
-                    modal.style.display="block"
+
+
+                    modal.style.display = "block"
                     modal.classList.add("show")
-                const close = document.getElementById("closeModal")
+                    const close = document.getElementById("closeModal")
 
-                close.addEventListener('click', ()=>{
-                    document.body.removeChild(modal)
-                })
-               
-                    
-                  
+                    close.addEventListener('click', () => {
+                        document.body.removeChild(modal)
+                    })
+
                 }
                 )
-            
+
         })
     });
 }

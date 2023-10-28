@@ -96,16 +96,10 @@ img {
   position: absolute;
   bottom: 0;
   margin: 0 0 5% 2% ;
-  /* Coloque o contêiner de texto na parte inferior do contêiner pai */
   left: 0;
-  /* Coloque o contêiner de texto na parte esquerda do contêiner pai */
   color: white;
-  /* Escolha a cor de texto desejada */
-  /* Defina um fundo com transparência */
   padding: 5px;
-  /* Adicione preenchimento para legibilidade */
   width: 100vw;
-  /* Faça o contêiner de texto ocupar toda a largura do pai */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -158,9 +152,7 @@ img {
 /* Estilize o parágrafo (p) dentro do contêiner de texto */
 .img-container .text p {
   margin: 0;
-  /* Remover margens padrão do p */
   max-width: 80%;
-  /* Limitar a largura para evitar que o texto se estenda muito */
 }
 /* Estilização da navbar */
 
@@ -358,6 +350,11 @@ footer {
   position: relative;
   width: 100%;
 }
+#main-search h1{
+  color: white;
+  font-size: 40px;
+}
+
 #main-search img{
   width: 300px;
 }
@@ -373,6 +370,8 @@ footer {
 }
 
 #exampleModalCenter .modal-footer {
+  display: flex;
+  justify-content: space-between;
   background-color: #000000; /* Defina a altura mínima desejada */
 }
 #exampleModalCenter .modal-content iframe {

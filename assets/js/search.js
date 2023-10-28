@@ -1,10 +1,11 @@
 const inputSearch = document.querySelector('.search');
 const buttonSearch = document.querySelector('.input_search_icon');
+
 buttonSearch.addEventListener('click',  ()=>{
   searchMovies();
   mainfav.style.display = "none"
 });
-document.addEventListener("keydown", (event) => {
+inputSearch.addEventListener("keydown", (event) => {
   if (event.keyCode === 13) {
     searchMovies();
     mainfav.style.display = "none"
@@ -15,12 +16,11 @@ inputSearch.addEventListener('input', function() {
   this.style.color = 'white';
 });
 
-
 function searchMovies() {
   const searchTerm = inputSearch.value.trim();
 
   if (searchTerm !== '') {
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=pt-BR&query=${searchTerm}&page=1&include_adult=false`)
+    fetch(`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=pt-BR&query=${searchTerm}&page=1&include_adult=false`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Erro na resposta da API');
@@ -31,17 +31,21 @@ function searchMovies() {
         const movies = data.results;
 
         if (movies.length === 0) {
-          console.log('Nenhum filme encontrado para o termo de pesquisa.');
+          console.log(`Nenhum filme encontrado para: "${searchTerm}"`);
+          mainSearch.innerHTML = `<h1>Nenhum filme encontrado para: "${searchTerm}"</h1>`
+          main.style.display = 'none';
+          mainSearch.style.display = 'flex';
+          mainSearch.style.height = "90vh"
         } else {
           const fragment = document.createDocumentFragment(); // Criar um fragmento
 
           movies.forEach(movie => {
-            const listFav = document.createElement('div');
-            listFav.classList.add('fav-list');
-            listFav.innerHTML = `
+            const listSearch = document.createElement('div');
+            listSearch.classList.add('listM');
+            listSearch.innerHTML = `
               <img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" alt="${movie.title}">
               <div class="movie-info">
-                <h3>${movie.title}</h3>
+                <h3>${movie.title || movie.name}</h3>
                 <span class="${getClassByRate(movie.vote_average)}">${parseFloat(movie.vote_average).toFixed(1)}</span>
               </div>
               <div class="overview">
@@ -49,7 +53,7 @@ function searchMovies() {
                 ${movie.overview}
               </div>
             `;
-            fragment.appendChild(listFav); // Anexar ao fragmento
+            fragment.appendChild(listSearch); // Anexar ao fragmento
           });
 
           // Limpar o conteúdo atual do mainSearch
@@ -60,11 +64,9 @@ function searchMovies() {
           mainSearch.appendChild(fragment); // Anexar o fragmento a mainSearch
           main.style.display = 'none';
           mainSearch.style.display = 'flex';
+          mainSearch.style.height = '100%'
         }
       })
-      .catch(error => {
-        console.error('Ocorreu um erro ao pesquisar filmes:', error);
-      });
   } else {
     const message = 'Nenhum termo de pesquisa foi inserido.';
     alert(message);

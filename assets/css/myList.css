@@ -35,7 +35,7 @@ main {
   color: #ededed;
 }
 
-.fav-list {
+.listM {
   width: 300px;
   margin: 1rem;
   background-color: var(--secondary-color);
@@ -45,11 +45,11 @@ main {
   border-radius: 3px;
 }
 
-.fav-list img {
+.listM img {
   width: 100%;
 }
 
-.fav-list:hover{
+.listM:hover{
   cursor: pointer;
 }
 
@@ -99,7 +99,7 @@ main {
   transition: transform 0.3s ease-in;
 }
 
-.fav-list:hover .overview {
+.listM:hover .overview {
   transform: translateY(0);
 }
 
