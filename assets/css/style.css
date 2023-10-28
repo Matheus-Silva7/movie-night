@@ -371,3 +371,11 @@ footer {
 #exampleModalCenter .modal-content {
   height: 70vh; /* Defina a altura mínima desejada */
 }
+
+#exampleModalCenter .modal-footer {
+  background-color: #000000; /* Defina a altura mínima desejada */
+}
+#exampleModalCenter .modal-content iframe {
+  height: 100%;
+  width: 100%; /* Defina a altura mínima desejada */
+}

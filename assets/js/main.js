@@ -139,23 +139,35 @@ function createCard(movie, container) {
                     const modal = document.createElement("div");
                     modal.classList.add("modal" , "fade")
                     modal.id ="exampleModalCenter" ;
-                    modal.innerHTML=`<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    modal.innerHTML=`<div class="modal-dialog modal-dialog-centered modal-lg " role="document">
                     <div class="modal-content modal-lg">
                       <div class="modal-body">
                       <div class="container-fluid">
-                      <iframe width="700" height="350" src="https://www.youtube.com/embed/${trailers[0].key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                      <iframe width="800" height="400" src="https://www.youtube.com/embed/${trailers[0].key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="closeModal" class="btn btn-secondary " data-dismiss="modal">Close</button>
 
                       </div>
                     </div>
                   </div>`
-                    console.log(trailers[0].key)
+
                   document.body.appendChild(modal)
-                  modal.classList.add("show")
-                  modal.style.display="block"
+
+                
+                    console.log(trailers[0].key)
+                  
+                 
+
+                    modal.style.display="block"
+                    modal.classList.add("show")
+                const close = document.getElementById("closeModal")
+
+                close.addEventListener('click', ()=>{
+                    document.body.removeChild(modal)
+                })
+               
                     
                   
                 }
