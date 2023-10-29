@@ -88,7 +88,7 @@ function renderFavorites() {
   mainfav.innerHTML = '';
   favorites.forEach(element => {
     const listFav = document.createElement('div');
-    listFav.classList.add('fav-list');
+    listFav.classList.add('listM');
     listFav.innerHTML = `
       <img src="https://image.tmdb.org/t/p/original/${element.poster_path}" alt="${element.title}">
       <div class="movie-info">
