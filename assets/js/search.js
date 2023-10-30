@@ -59,6 +59,7 @@ function searchMovies() {
               </div>
             `;
             fragment.appendChild(listSearch); // Anexar ao fragmento
+            
             listSearch.querySelector('.btn-movie').addEventListener('click', () => {
               console.log(movie.id);
               mainSearch.innerHTML = "";

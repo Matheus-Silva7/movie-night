@@ -342,6 +342,21 @@ footer {
   color: #ccc;
 }
 
+.madeby{
+  color: #aaa;
+}
+
+.madeby a{
+  color: #eee;
+}
+
+.madeby a:hover{
+  color: #7378c5;
+  transition: 0.5s;
+}
+
+.made
+
 #main-fav{
   display: none;
 }

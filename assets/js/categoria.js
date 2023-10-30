@@ -32,11 +32,15 @@ function showMovies(movies) {
         </div>
      
         `;
+        const btnmovie = movieEl.querySelector('.btn-movie')
         movieList.appendChild(movieEl)
         main.appendChild(movieList);
-        movieEl.querySelector('.btn-movie').addEventListener('click',()=>{
+
+        btnmovie.addEventListener('click',()=>{
             console.log(title)
         })
+
+       
     });
     main.innerHTML += `
     <div class = "btnpage">
