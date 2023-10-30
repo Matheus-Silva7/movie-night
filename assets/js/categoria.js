@@ -6,9 +6,9 @@ const mainSearch = document.getElementById('main-search');
 let page = 1
 
 async function fetchMoviesByCategory() {
-        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${idCategoria}&language=pt-BR&page=${page}`);
-        const data = await response.json();
-        showMovies(data.results);
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${idCategoria}&language=pt-BR&page=${page}`);
+    const data = await response.json();
+    showMovies(data.results);
 }
 const pageH4 = document.querySelector('.page')
 function showMovies(movies) {
@@ -21,17 +21,22 @@ function showMovies(movies) {
         movieEl.classList.add('movie');
         movieEl.innerHTML = `
         <img src="${IMG_PATH + poster_path}" alt="${title}">
-            <div class="movie-info">
-                <h3>${title}</h3>
-                <span class="${getClassByRate(vote_average)}">${parseFloat(vote_average).toFixed(1)}</span>
-            </div>
-            <div class="overview">
-                <h3>Overview</h3>
-                ${overview}
-            </div>
+        <div class="movie-info">
+        <h3>${title}</h3>
+        <span class="${getClassByRate(vote_average)}">${parseFloat(vote_average).toFixed(1)}</span>
+        </div>
+        <div class="overview">
+        <h3>Overview</h3>
+        ${overview}<br>
+        <button id="${movie.id}" class="btn-movie">Mais detalhes</button>
+        </div>
+     
         `;
         movieList.appendChild(movieEl)
         main.appendChild(movieList);
+        movieEl.querySelector('.btn-movie').addEventListener('click',()=>{
+            console.log(title)
+        })
     });
     main.innerHTML += `
     <div class = "btnpage">

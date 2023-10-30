@@ -345,6 +345,7 @@ footer {
 #main-fav{
   display: none;
 }
+
 #main-search{
   display: none;
   position: relative;
@@ -363,6 +364,11 @@ footer {
   text-align: center;
 }
 
+#main-search .btn-back{
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+}
 
 /* Se você quiser definir uma altura mínima também */
 #exampleModalCenter .modal-content {

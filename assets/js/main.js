@@ -1,12 +1,10 @@
 
-
 //chamando classes das categorias para adicionar os posters
 const releasesMovies = document.querySelector('.releases-movies');
 const ratedMovies = document.querySelector('.rated-movies');
 const ratedSeries = document.querySelector('.rated-series');
 const series = document.querySelector('.series');
 
-const descList = [];
 
 // Função para criar cartões de filmes e adicionar eventos de clique
 function createCard(movie, container) {
@@ -44,7 +42,7 @@ function createCard(movie, container) {
                 <div class="textos">
                     <h1>${movie.title || movie.name}</h1>
                     <div class="avaliacoes">
-                        <p><i class="fa-solid fa-star"></i> ${parseFloat(movie.vote_average).toFixed(1)}</p>
+                        <p> <i class="fa-solid fa-star"></i> ${parseFloat(movie.vote_average).toFixed(1)} (${movie.vote_count})</p>
                         <p>${movie.release_date || movie.first_air_date}</p>
                     </div>
                     <h2>Overview</h2>
@@ -64,10 +62,8 @@ function createCard(movie, container) {
                     favorites.splice(index, 1);
                 }
             } else {
-
                 favorites.push(movie);
                 console.log(favorites)
-
                 renderFavorites()
             }
         });
@@ -80,7 +76,7 @@ function createCard(movie, container) {
                 listFav.innerHTML = `
                 <img src="https://image.tmdb.org/t/p/original/${element.poster_path}" alt="${element.title}">
                 <div class="movie-info">
-                  <h3>${element.title}</h3>
+                  <h3>${element.title || element.name}</h3>
                   <span class="${getClassByRate(element.vote_average)}">${parseFloat(element.vote_average).toFixed(1)}</span>
                 </div>
                 <div class="overview">
@@ -89,7 +85,6 @@ function createCard(movie, container) {
                 </div>
               `;
                 mainfav.appendChild(listFav);
-
                 return favorites
             });
 
@@ -115,6 +110,7 @@ function createCard(movie, container) {
         const title = movie.title;
         console.log(idMovie);
         console.log(title);
+        
         const btnTrailer = document.querySelector('.verTrailer')
 
         btnTrailer.addEventListener('click', () => {
@@ -128,41 +124,38 @@ function createCard(movie, container) {
                 }).then(data => {
                     const trailers = data.results;
 
-                    const modal = document.createElement("div");
-                    modal.classList.add("modal", "fade")
-                    modal.id = "exampleModalCenter";
-                    modal.innerHTML = `<div class="modal-dialog modal-dialog-centered modal-lg " role="document">
-                    <div class="modal-content modal-lg">
-                      <div class="modal-body">
-                      <div class="container-fluid">
-                      <iframe width="800" height="400" src="https://www.youtube.com/embed/${trailers[0].key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                      </div>
-                      <div class="modal-footer">
-                      <h6 style="color: white;">${movie.title || movie.name}<h6 style="color: white;">
-                    <button type="button" id="closeModal" class="btn btn-secondary " data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>`
-
-                    document.body.appendChild(modal)
-
-
-                    console.log(trailers[0].key)
-
-
-
-                    modal.style.display = "block"
-                    modal.classList.add("show")
-                    const close = document.getElementById("closeModal")
-
-                    close.addEventListener('click', () => {
-                        document.body.removeChild(modal)
-                    })
-
-                }
-                )
-
+                    if (trailers.length > 0) {
+                        // Se houver trailers, crie o modal
+                        const modal = document.createElement('div');
+                        modal.classList.add('modal', 'fade');
+                        modal.id = 'exampleModalCenter';
+                        modal.innerHTML = `
+                          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content modal-lg">
+                              <div class="modal-body">
+                                <div class="container-fluid">
+                                  <iframe width="800" height="400" src="https://www.youtube.com/embed/${trailers[0].key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <h6 style="color: white;">${movie.title || movie.name}</h6>
+                                <button type="button" id="closeModal" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>`;
+                        document.body.appendChild(modal);
+                
+                        modal.style.display = 'block';
+                        modal.classList.add('show');
+                
+                        const close = document.getElementById('closeModal');
+                        close.addEventListener('click', () => {
+                          document.body.removeChild(modal);
+                        });
+                      } else {
+                        alert('Não há trailers disponíveis.');
+                      }
+                })
         })
     });
 }

@@ -16,7 +16,7 @@ const favorites = []
 function showInfo(images) {
   const results = images.results;
 
-  for (let i = 0; i < 5 && i < results.length; i++) {
+  for (let i = 0; i < 7 && i < results.length; i++) {
     const element = results[i];
 
     // Crie um novo elemento de imagem para cada backdrop e adicione-o ao swiperSlider
@@ -73,8 +73,6 @@ function showInfo(images) {
         console.log(favorites)
         // Renderize a lista de favoritos
         renderFavorites();
-        /*  if (favorites.length === 0){  
-         } */
       });
     });
   }

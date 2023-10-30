@@ -134,3 +134,22 @@
     margin-top: 10px;
     margin-left: 100px;
 }
+
+.overview{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.overview button{
+   background-color: #ffffff;
+   border-radius: 5px;
+   width: 120px;
+   margin: 0 auto;
+   border: solid black 1px;
+}
+
+.overview button:hover{
+    background-color: #e7e6e6;
+    transition: 0.5s;
+}
