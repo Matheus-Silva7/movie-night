@@ -47,9 +47,8 @@ function showInfo(images) {
     
     <div class="items">
     <div class="text">
-      <h3>${element.title || element.original_name}</h3>
+      <h3>${element.title || element.name}</h3>
       <h5>${element.release_date || element.first_air_date}</h5>
-      <button type="button" id=${element.id}" class="btn btn-secondary btn-lg btn-light btn-movie verDetalhes">Ver detalhes</button>
     </div>
     <div class="button-add">
    
@@ -113,7 +112,7 @@ function renderFavorites() {
     listFav.innerHTML = `
       <img src="https://image.tmdb.org/t/p/original/${element.poster_path}" alt="${element.title}">
       <div class="movie-info">
-        <h3>${element.title}</h3>
+        <h3>${element.title || element.name}</h3>
         <span class="${getClassByRate(element.vote_average)}">${parseFloat(element.vote_average).toFixed(1)}</span>
       </div>
       <div class="overview">
@@ -188,7 +187,7 @@ const ratedMovies = document.querySelector('.rated-movies');
 const ratedSeries = document.querySelector('.rated-series');
 const series = document.querySelector('.series');
 
-// Função para criar cartões de filmes e adicionar eventos de clique
+// Função para criar cartões dos filmes e series da main
 function createCard(movie, container) {
   const imgMovie = document.createElement('div');
   imgMovie.classList.add("movie-image");
@@ -202,6 +201,7 @@ function createCard(movie, container) {
   cardMovie.classList.add("movie-card");
   cardMovie.appendChild(imgMovie);
   container.appendChild(cardMovie);
+
 
   // Selecionar o botão dentro do cardMovie
   const btnMovie = cardMovie.querySelector('.btn-movie');
@@ -251,9 +251,6 @@ function createCard(movie, container) {
 
           favorites.push(movie);
           console.log(favorites)
-
-
-
 
         }
         salvandoFavoritos()
@@ -308,8 +305,8 @@ function createCard(movie, container) {
       const btnTrailer = document.querySelector('.verTrailer')
 
       btnTrailer.addEventListener('click', () => {
-
-        fetch(`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=c6c380f82908eab9870589641a012358&language=pt-BR`)
+        
+        fetch(`https://api.themoviedb.org/3/${movie.media_type}/${movie.id}/videos?api_key=c6c380f82908eab9870589641a012358&language=pt-BR`)
           .then(response => {
             if (!response.ok) {
               throw new Error('Erro na resposta da API');
@@ -356,9 +353,7 @@ function createCard(movie, container) {
       })
     });
   }
-
 }
-
 
 //funcao de requerimento da url dos poster e do conteiner que ele sera adicionado
 function fetchDataAndRender(url, container) {
