@@ -4,7 +4,7 @@ const mainfav = document.getElementById('main-fav');
 const main = document.getElementById('main');
 const mainSearch = document.getElementById('main-search');
 let page = 1
-const API_URL = `https://api.themoviedb.org/3/trending/tv/week?api_key=c6c380f82908eab9870589641a012358&language=pt-BR&page=${page}`
+const API_URL = `https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}&language=pt-BR&page=${page}`
 
 getMovies(API_URL)
 

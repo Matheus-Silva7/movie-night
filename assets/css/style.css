@@ -385,6 +385,11 @@ footer {
   border-radius: 5px;
 }
 
+#main-search .btn-back:hover{
+background-color: #aaa;
+transition: 0.3s;
+}
+
 /* Se você quiser definir uma altura mínima também */
 #exampleModalCenter .modal-content {
   height: 70vh; /* Defina a altura mínima desejada */
@@ -398,4 +403,14 @@ footer {
 #exampleModalCenter .modal-content iframe {
   height: 100%;
   width: 100%; /* Defina a altura mínima desejada */
+}
+
+#closeModal{
+  background-color: #3d416b;
+  border: 0;
+}
+
+#closeModal:hover{
+background-color: #22254b;
+transition: 0.3s;
 }

@@ -4,16 +4,13 @@ const mainfav = document.getElementById('main-fav');
 const main = document.getElementById('main');
 const mainSearch = document.getElementById('main-search');
 let page = 1
-const pageNumber = document.querySelector('.page')
 
-//funcao do comando fetch puxando os dados da api
 async function fetchMoviesByCategory() {
     const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${idCategoria}&language=pt-BR&page=${page}`);
     const data = await response.json();
     showMovies(data.results);
 }
-
-//função para mostrar os cards dos filmes
+const pageH4 = document.querySelector('.page')
 function showMovies(movies) {
     main.innerHTML = '';
     const movieList = document.createElement('div')
@@ -35,16 +32,16 @@ function showMovies(movies) {
         </div>
      
         `;
-        const btnmovie = movieEl.querySelector('.btn-movie')
+        const btnmovie = movieEl.querySelector('.btn-movie');
         movieList.appendChild(movieEl)
         main.appendChild(movieList);
 
         btnmovie.addEventListener('click',()=>{
             console.log(title)
         })
-    });
 
-    //adicionando paginação next e prev
+  
+    });
     main.innerHTML += `
     <div class = "btnpage">
     <button class="btn-prev">prev</button>
@@ -52,11 +49,9 @@ function showMovies(movies) {
     <button class="btn-next">next</button>
     </div>
     `
-
-    //função do next e prev
     const btnNext = document.querySelector('.btn-next')
     const btnprev = document.querySelector('.btn-prev')
-    pageNumber.textContent = `Página: ${page}`
+    pageH4.textContent = `Página: ${page}`
     btnprev.addEventListener('click', () => {
         if (page > 1) {
             page--
@@ -66,7 +61,7 @@ function showMovies(movies) {
                 top: 0,
                 behavior: 'smooth'
             })
-            pageNumber.textContent = `Página: ${page}`
+            pageH4.textContent = `Página: ${page}`
         }
     })
 
@@ -78,7 +73,7 @@ function showMovies(movies) {
             top: 0,
             behavior: 'smooth'
         })
-        pageNumber.textContent = `Página: ${page}`
+        pageH4.textContent = `Página: ${page}`
     })
 }
 

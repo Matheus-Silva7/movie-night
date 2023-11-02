@@ -148,7 +148,7 @@ function searchMovies() {
               const btnTrailer = document.querySelector('.verTrailer')
               btnTrailer.addEventListener('click', () => {
 
-                fetch(`https://api.themoviedb.org/3/${movie.media_type}/${movie.id}/videos?api_key=c6c380f82908eab9870589641a012358&language=pt-BR`)
+                fetch(`https://api.themoviedb.org/3/${movie.media_type || "movie" || "tv"}/${movie.id}/videos?api_key=${apiKey}&language=pt-BR`)
                   .then(response => {
                     if (!response.ok) {
                       throw new Error('Erro na resposta da API');

@@ -228,7 +228,7 @@ function createCard(movie, container) {
           <div class="textos">
               <h1>${movie.title || movie.name}</h1>
               <div class="avaliacoes">
-                  <p><i class="fa-solid fa-star"></i> ${parseFloat(movie.vote_average).toFixed(1)}</p>
+                  <p><i class="fa-solid fa-star"></i> ${parseFloat(movie.vote_average).toFixed(1)} (${movie.vote_count})</p>
                   <p>${movie.release_date || movie.first_air_date}</p>
               </div>
               <h2>Overview</h2>
@@ -266,7 +266,7 @@ function createCard(movie, container) {
           listFav.innerHTML = `
           <img src="https://image.tmdb.org/t/p/original/${element.poster_path}" alt="${element.title}">
           <div class="movie-info">
-            <h3>${element.title}</h3>
+        <h3>${element.title || element.name}</h3>
             <span class="${getClassByRate(element.vote_average)}">${parseFloat(element.vote_average).toFixed(1)}</span>
           </div>
           <div class="overview">
@@ -306,7 +306,7 @@ function createCard(movie, container) {
 
       btnTrailer.addEventListener('click', () => {
         
-        fetch(`https://api.themoviedb.org/3/${movie.media_type}/${movie.id}/videos?api_key=c6c380f82908eab9870589641a012358&language=pt-BR`)
+        fetch(`https://api.themoviedb.org/3/${movie.media_type || "movie" || "tv"}/${movie.id}/videos?api_key=${apiKey}&language=pt-BR`)
           .then(response => {
             if (!response.ok) {
               throw new Error('Erro na resposta da API');
