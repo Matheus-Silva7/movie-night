@@ -309,6 +309,21 @@ p {
   font-size: 15px;
 }
 
+.rmv-movie{
+  position: absolute;
+  padding: 2px 5px;
+  background-color: #3d416b;
+  border-radius: 0 5px 5px 0;
+  color: #ddd;
+  z-index: 1
+}
+
+.rmv-movie:hover{
+  background-color: #22254b;
+  color: white;
+  transition: 0.3s;
+}
+
 /* footer style*/
 
 footer {

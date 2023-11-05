@@ -73,17 +73,8 @@ function showInfo(images) {
 
     botao.forEach(botao => {
       botao.addEventListener('click', () => {
-        if (botao.classList.contains("azul")) {
-          // Se o botão já estiver azul, remova-o da lista de favoritos
-          const index = favorites.findIndex(fav => fav.id == element.id);
-          if (index !== -1) {
-            favorites.splice(index, 1);
-          }
-        } else {
-          favorites.push(element);
-
-
-        }
+       
+        favorites.push(element);
         // Alterne a classe azul/botaoLado no botão
         botao.classList.toggle("azul");
         botao.classList.toggle("botaoLado");
@@ -93,8 +84,6 @@ function showInfo(images) {
 
         salvandoFavoritos()
         carregandoFavoritos()
-        /*  if (favorites.length === 0){  
-         } */
       });
     });
   }
@@ -106,10 +95,15 @@ const mainSearch = document.getElementById('main-search');
 
 function renderFavorites() {
   mainfav.innerHTML = '';
-  favorites.forEach(element => {
-    const listFav = document.createElement('div');
-    listFav.classList.add('listM');
-    listFav.innerHTML = `
+  if (favorites.length === 0) {
+    mainfav.innerHTML = "<h1 style='color: white'>Sua lista está vazia! </h1>"
+    mainfav.style.height = "70vh"
+  } else {
+    favorites.forEach(element => {
+      const listFav = document.createElement('div');
+      listFav.classList.add('listM', element.id);
+      listFav.innerHTML = `
+      <button class="rmv-movie"> X </button>
       <img src="https://image.tmdb.org/t/p/original/${element.poster_path}" alt="${element.title}">
       <div class="movie-info">
         <h3>${element.title || element.name}</h3>
@@ -120,26 +114,41 @@ function renderFavorites() {
         ${element.overview}
       </div>
     `;
-    mainfav.appendChild(listFav);
-  });
+      mainfav.appendChild(listFav);
+      mainfav.style.height = "100%";
+      removeFav(listFav, element.id)
+    });
+  }
 
-  mainfav.style.display = "none";
-
-  // Event listener para exibir favoritos
-  const listButton = document.querySelector('.active-list');
-  const activeMain = document.querySelector('.active-main');
-  listButton.addEventListener('click', () => {
-    mainfav.style.display = "flex";
-    main.style.display = "none";
-    mainSearch.style.display = "none"
-  });
-  activeMain.addEventListener('click', () => {
-    mainfav.style.display = "none";
-    main.style.display = "flex";
-  });
+  function removeFav(divFav, movieId) {
+    const btnRmv = divFav.querySelector('.rmv-movie');
+    btnRmv.addEventListener('click', () => {
+      if (divFav.classList.contains(movieId)) {
+        const index = favorites.findIndex(fav => fav.id == movieId);
+        if (index !== -1) {
+          favorites.splice(index, 1);
+          renderFavorites();
+          salvandoFavoritos()
+          carregandoFavoritos()
+        }
+      }
+    });
+  }
 }
 
+mainfav.style.display = "none";
 
+// Event listener para exibir favoritos
+const listButton = document.querySelector('.active-list');
+listButton.addEventListener('click', () => {
+  mainfav.style.display = "flex";
+  main.style.display = "none";
+  mainSearch.style.display = "none"
+});
+
+
+
+//funcao mudar a cor das avaliações dependendo da nota
 function getClassByRate(vote) {
   if (vote >= 8) {
     return 'green'
@@ -150,19 +159,7 @@ function getClassByRate(vote) {
   }
 }
 
-/* function removeFavorite(movieId) {
-  const index = favorites.findIndex(favorite => favorite.id === movieId);
-
-  if (index !== -1) {
-    favorites.splice(index, 1);
-  }
-
-  const btncolor = document.querySelector('.btn-color')
-  btncolor.classList.remove('azul')
-  renderFavorites(); 
-}
- */
-
+//função do swipper
 var swiper = new Swiper(".swiper", {
   cssMode: true,
   loop: true,
@@ -179,9 +176,7 @@ var swiper = new Swiper(".swiper", {
 
 // main 
 
-
-
-//chamando classes das categorias para adicionar os posters
+//chamando classes dos containers das categorias para adicionar os posters
 const releasesMovies = document.querySelector('.releases-movies');
 const ratedMovies = document.querySelector('.rated-movies');
 const ratedSeries = document.querySelector('.rated-series');
@@ -239,61 +234,15 @@ function createCard(movie, container) {
       </div>`;
       const botao = document.querySelector(".botaoLado");
 
-      botao.addEventListener('click', (event) => {
-        const botao = event.target;
+      botao.addEventListener('click', () => {
 
-        if (botao.classList.contains("azul")) {
-          const index = favorites.findIndex(fav => fav.id == movie.id);
-          if (index !== -1) {
-            favorites.splice(index, 1);
-          }
-        } else {
+        favorites.push(movie);
+        console.log(favorites)
 
-          favorites.push(movie);
-          console.log(favorites)
-
-        }
         salvandoFavoritos()
         carregandoFavoritos()
         renderFavorites()
       });
-
-      function renderFavorites() {
-        mainfav.innerHTML = '';
-        favorites.forEach(element => {
-          const listFav = document.createElement('div');
-          listFav.classList.add('listM');
-          listFav.innerHTML = `
-          <img src="https://image.tmdb.org/t/p/original/${element.poster_path}" alt="${element.title}">
-          <div class="movie-info">
-        <h3>${element.title || element.name}</h3>
-            <span class="${getClassByRate(element.vote_average)}">${parseFloat(element.vote_average).toFixed(1)}</span>
-          </div>
-          <div class="overview">
-            <h3>Overview</h3>
-            ${element.overview}
-          </div>
-        `;
-          mainfav.appendChild(listFav);
-
-
-        });
-
-        mainfav.style.display = "none";
-
-        // Event listener para exibir favoritos
-        const listButton = document.querySelector('.active-list');
-        const activeMain = document.querySelector('.active-main');
-        listButton.addEventListener('click', () => {
-          mainfav.style.display = "flex";
-          main.style.display = "none";
-          mainSearch.style.display = "none"
-        });
-        activeMain.addEventListener('click', () => {
-          mainfav.style.display = "none";
-          main.style.display = "flex";
-        });
-      }
 
 
       const movieContainer = document.querySelector('.movie-container');
@@ -305,7 +254,7 @@ function createCard(movie, container) {
       const btnTrailer = document.querySelector('.verTrailer')
 
       btnTrailer.addEventListener('click', () => {
-        
+
         fetch(`https://api.themoviedb.org/3/${movie.media_type || "movie" || "tv"}/${movie.id}/videos?api_key=${apiKey}&language=pt-BR`)
           .then(response => {
             if (!response.ok) {
@@ -334,10 +283,7 @@ function createCard(movie, container) {
 
             document.body.appendChild(modal)
 
-
             console.log(trailers[0].key)
-
-
 
             modal.style.display = "block"
             modal.classList.add("show")
@@ -367,22 +313,11 @@ function fetchDataAndRender(url, container) {
     })
 }
 
-//criando as funções para passar a funcao e passar seus parametros de conteudo
-function fetchMoviesData() {
-  fetchDataAndRender(urlMovie, releasesMovies);
-}
-
-function fetchMoviesDataTop() {
-  fetchDataAndRender(urlMovieTop, ratedMovies);
-}
-
-function fetchSeriesData() {
-  fetchDataAndRender(urlSerie, series);
-}
-
-function fetchSeriesDataTop() {
-  fetchDataAndRender(urlSerieTop, ratedSeries);
-}
+//criando as funções para passar a URL e e o seu container
+function fetchMoviesData() { fetchDataAndRender(urlMovie, releasesMovies); }
+function fetchMoviesDataTop() { fetchDataAndRender(urlMovieTop, ratedMovies); }
+function fetchSeriesData() { fetchDataAndRender(urlSerie, series); }
+function fetchSeriesDataTop() { fetchDataAndRender(urlSerieTop, ratedSeries); }
 
 //chamando as funções
 fetchMoviesData();
@@ -390,7 +325,6 @@ fetchMoviesDataTop();
 fetchSeriesDataTop();
 fetchSeriesData();
 
-//eventlister para ele passar 900px pra esquerda ou para a direita
 const scrollAmount = 850;
 
 
