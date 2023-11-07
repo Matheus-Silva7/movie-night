@@ -73,7 +73,7 @@ function showInfo(images) {
 
     botao.forEach(botao => {
       botao.addEventListener('click', () => {
-       
+
         favorites.push(element);
         // Alterne a classe azul/botaoLado no botão
         botao.classList.toggle("azul");
@@ -206,6 +206,7 @@ function createCard(movie, container) {
 
   function sla(addEvent) {
     addEvent.addEventListener('click', () => {
+
       // Limpar o conteúdo atual do elemento 'main'
       main.innerHTML = "";
 
@@ -254,47 +255,47 @@ function createCard(movie, container) {
       const btnTrailer = document.querySelector('.verTrailer')
 
       btnTrailer.addEventListener('click', () => {
-
         fetch(`https://api.themoviedb.org/3/${movie.media_type || "movie" || "tv"}/${movie.id}/videos?api_key=${apiKey}&language=pt-BR`)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Erro na resposta da API');
-            }
-            return response.json();
-          }).then(data => {
-            const trailers = data.results;
-
-            const modal = document.createElement("div");
-            modal.classList.add("modal", "fade")
-            modal.id = "exampleModalCenter";
-            modal.innerHTML = `<div class="modal-dialog modal-dialog-centered modal-lg " role="document">
-              <div class="modal-content modal-lg">
-                <div class="modal-body">
-                <div class="container-fluid">
-                <iframe width="800" height="400" src="https://www.youtube.com/embed/${trailers[0].key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-                </div>
-                <div class="modal-footer">
-                <h6 style="color: white;">${movie.title || movie.name}<h6 style="color: white;">
-              <button type="button" id="closeModal" class="btn btn-secondary " data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>`
-
-            document.body.appendChild(modal)
-
-            console.log(trailers[0].key)
-
-            modal.style.display = "block"
-            modal.classList.add("show")
-            const close = document.getElementById("closeModal")
-
-            close.addEventListener('click', () => {
-              document.body.removeChild(modal)
-            })
-
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erro na resposta da API');
           }
-          )
+          return response.json();
+        }).then(data => {
+          const trailers = data.results;
+
+          if (trailers.length > 0) {
+            // Se houver trailers, crie o modal
+            const modal = document.createElement('div');
+            modal.classList.add('modal', 'fade');
+            modal.id = 'exampleModalCenter';
+            modal.innerHTML = `
+              <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content modal-lg">
+                  <div class="modal-body">
+                    <div class="container-fluid">
+                      <iframe width="800" height="400" src="https://www.youtube.com/embed/${trailers[0].key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <h6 style="color: white;">${movie.title || movie.name}</h6>
+                    <button type="button" id="closeModal" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>`;
+            document.body.appendChild(modal);
+
+            modal.style.display = 'block';
+            modal.classList.add('show');
+
+            const close = document.getElementById('closeModal');
+            close.addEventListener('click', () => {
+              document.body.removeChild(modal);
+            });
+          } else {
+            alert('Trailer não encontrado!');
+          }
+        })
 
       })
     });
