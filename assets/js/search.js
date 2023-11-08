@@ -43,11 +43,17 @@ function searchMovies() {
         } else {
           const fragment = document.createDocumentFragment(); // Criar um fragmento
 
+        let Img;
           movies.forEach(movie => {
+            if(movie.poster_path != null){
+              Img = `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+            } else {
+              Img ='assets/img/image-not-found.png'
+            }
             const listSearch = document.createElement('div');
             listSearch.classList.add('listM');
             listSearch.innerHTML = `
-              <img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" alt="${movie.title}">
+              <img src=${Img} alt="${movie.title || movie.name}">
               <div class="movie-info">
                 <h3>${movie.title || movie.name}</h3>
                 <span class="${getClassByRate(movie.vote_average)}">${parseFloat(movie.vote_average).toFixed(1)}</span>

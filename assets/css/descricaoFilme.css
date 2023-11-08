@@ -137,14 +137,15 @@
 }
 
 .overview button{
-   background-color: #ffffff;
+   background-color: #3d416b;
+   color: #ddd;
    border-radius: 5px;
    width: 120px;
+   height: 30px;
    margin: 0 auto;
-   border: solid black 1px;
 }
 
 .overview button:hover{
-    background-color: #e7e6e6;
+    background-color: #22254b;
     transition: 0.5s;
 }

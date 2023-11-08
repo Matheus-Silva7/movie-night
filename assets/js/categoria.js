@@ -27,19 +27,12 @@ function showMovies(movies) {
         </div>
         <div class="overview">
         <h3>Overview</h3>
-        ${overview}<br>
-        <button id="${movie.id}" class="btn-movie">Mais detalhes</button>
+        ${overview}
         </div>
      
         `;
-        const btnmovie = movieEl.querySelector('.btn-movie');
         movieList.appendChild(movieEl)
         main.appendChild(movieList);
-
-        btnmovie.addEventListener('click',()=>{
-            console.log(title)
-        })
-
   
     });
     main.innerHTML += `
