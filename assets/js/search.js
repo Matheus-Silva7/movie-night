@@ -94,60 +94,6 @@ function searchMovies() {
                       </div>
                   </div>`;
 
-
-              /*  const botao = document.querySelector(".botaoLado");
- 
-               botao.addEventListener('click', (event) => {
-                 const botao = event.target;
- 
-                 if (botao.classList.contains("azul")) {
-                   const index = favorites.findIndex(fav => fav.id == movie.id);
-                   if (index !== -1) {
-                     favorites.splice(index, 1);
-                   }
-                 } else {
-                   favorites.push(movie);
-                   console.log(favorites)
-                   renderFavorites()
-                 }
-               });
- 
-               function renderFavorites() {
-                 mainfav.innerHTML = '';
-                 favorites.forEach(element => {
-                   const listFav = document.createElement('div');
-                   listFav.classList.add('listM');
-                   listFav.innerHTML = `
-                       <img src="https://image.tmdb.org/t/p/original/${element.poster_path}" alt="${element.title}">
-                       <div class="movie-info">
-                         <h3>${element.title || element.name}</h3>
-                         <span class="${getClassByRate(element.vote_average)}">${parseFloat(element.vote_average).toFixed(1)}</span>
-                       </div>
-                       <div class="overview">
-                         <h3>Overview</h3>
-                         ${element.overview}
-                       </div>
-                     `;
-                   mainfav.appendChild(listFav);
-                   return favorites
-                 });
- 
-                 mainfav.style.display = "none";
- 
-                 // Event listener para exibir favoritos
-                 const listButton = document.querySelector('.active-list');
-                 const activeMain = document.querySelector('.active-main');
-                 listButton.addEventListener('click', () => {
-                   mainfav.style.display = "flex";
-                   main.style.display = "none";
-                   mainSearch.style.display = "none"
-                 });
-                 activeMain.addEventListener('click', () => {
-                   mainfav.style.display = "none";
-                   main.style.display = "flex";
-                 });
-               }  */
-
               const movieContainer = document.querySelector('.movie-container');
               movieContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`;
 
