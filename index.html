@@ -22,18 +22,19 @@
   <link rel="stylesheet" href="assets/css/descricaoFilme.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/myList.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid barraNav px-5">
       <a class="navbar-brand px-5" href="index.html">
         <img src="assets/img/logo.png" alt="Ícone da Navbar">
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,7 +43,7 @@
             <a class="nav-link active fs-5 active-main" aria-current="page" href="index.html">Início</a>
           </li>
           <li class="nav-item">
-            <button class="nav-link fs-5 active-list" href="">Minha lista</button>
+            <button class="nav-link fs-5 active-list" href="#">Minha lista</button>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle fs-5" href="#" role="button" data-bs-toggle="dropdown"
@@ -72,6 +73,39 @@
       </div>
     </div>
   </nav>
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active fs-5 active-main" aria-current="page" href="index.html">Início</a>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link fs-5 active-list" href="#">Minha lista</button>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle fs-5" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Categorias
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item acao" href="acao.html">Ação</a></li>
+            <li><a class="dropdown-item animacao" href="animacao.html">Animação</a></li>
+            <li><a class="dropdown-item comedia" href="comedia.html">Comédia</a></li>
+            <li><a class="dropdown-item terror" href="terror.html">Terror</a></li>
+            <li><a class="dropdown-item romance" href="romance.html">Romance</a></li>
+            <li><a class="dropdown-item fantasia" href="fantasia.html">Fantasia</a></li>
+            <li><a class="dropdown-item ultLanca" href="ultLanca.html">Filmes lançamentos</a></li>
+            <li><a class="dropdown-item seLanca" href="serieLac.html">Series lançamentos</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <main id="main-index">
 

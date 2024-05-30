@@ -1,0 +1,12 @@
+@media (max-width: 800px){
+    .img-container img{
+      height: 50vh;
+    }
+
+    .navbar{
+        height: 10vh;
+      }
+  }
+
+  
+  

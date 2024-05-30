@@ -73,9 +73,12 @@ img {
 }
 .img-container img{
  width: 100vw;
- height: 95vh;
+ height: 70vh;
 
 }
+
+
+
 .img-container::before {
   content: "";
   position: absolute; /* Posiciona o pseudo-elemento acima do conteúdo */
@@ -158,9 +161,10 @@ img {
 
 .navbar {
   background-color: black !important;
-  height: 17vh;
+  height: 15vh;
   width: 100%;
 }
+
 
 .fixed-top {
   position: relative;
