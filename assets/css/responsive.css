@@ -1,12 +1,100 @@
-@media (max-width: 800px){
-    .img-container img{
-      height: 50vh;
-    }
+@media (max-width: 800px) {
 
-    .navbar{
-        height: 10vh;
-      }
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
   }
 
-  
-  
+  .navbar-collapse {
+    z-index: 10;
+    background-color: #000000ea;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .img-container img {
+    height: 50vh;
+  }
+
+  .navbar {
+    height: 10vh;
+  }
+
+  .nav-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .dropdown-item {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 1.5rem;
+  }
+
+  .nav-item ul {
+    width: 80%;
+  }
+
+  .navbar-nav .dropdown-menu {
+    position: absolute;
+    width: 100%;
+  }
+
+  .input-group {
+    width: 95%;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar-brand img {
+    width: 13vw;
+  }
+
+  .img-container img {
+    height: 30vh;
+  }
+
+  .img-container .button-add {
+    width: auto;
+  }
+
+  .button-add {
+    margin: 0;
+  }
+
+  .button-add p {
+    font-size: 0.75rem;
+  }
+
+  .img-container .items p {
+    margin: 0;
+  }
+
+  .img-container .text h3 {
+    font-size: 1.5rem;
+  }
+
+  .img-container .text h5 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .movie-image img {
+    width: 110px;
+  }
+
+  .movie-image p {
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .movie-image img:hover {
+    width: 110px;
+  }
+}
