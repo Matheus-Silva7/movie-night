@@ -88,6 +88,23 @@
   .btn-back{
     margin-right: 80%;
   }
+
+  .listM {
+    width: 35%;
+  }
+
+  .movie-info h3{
+    font-size: 1.3rem;
+  }
+
+  .overview{
+    padding: 2rem 0;
+  }
+
+  .overview h3,
+  .overview p{
+    display: none;
+  }
     
 }
 
@@ -161,9 +178,16 @@
 .imagem-desc img{
   width: 170px !important;
 }
+
+.listM {
+  width: 170px;
+}
+.movie-info span{
+  display: none;
+}
 }
 
-@media (max-width: 400px) {
+@media (max-width: 406px) {
   .navbar-brand img {
     width: 17vw;
   }
@@ -171,8 +195,9 @@
   .imagem-desc img{
     width: 150px !important;
   }
-  .movie-container .btn-color{
-    width: 81px;
-    height: 67px;
+  
+
+  .listM {
+    width: 150px;
   }
 }

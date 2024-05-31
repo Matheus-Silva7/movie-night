@@ -60,13 +60,14 @@ function searchMovies() {
               </div>
               <div class="overview">
                 <h3>Overview</h3>
-                ${movie.overview}
+                <p>${movie.overview}</p>
                 <button id="${movie.id}" class="btn-movie">Mais detalhes</button>
               </div>
             `;
             fragment.appendChild(listSearch); // Anexar ao fragmento
 
             listSearch.querySelector('.btn-movie').addEventListener('click', () => {
+              scrollTo(top)
               console.log(movie.id);
               mainSearch.innerHTML = "";
 
