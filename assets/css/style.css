@@ -229,6 +229,20 @@ h5 {
   margin-left: 20%;
 }
 
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+  position: absolute;
+  padding: 20px;
+}
+
+.button-add p{
+  margin: 0;
+}
+
+.dropdown-item {
+  margin: 8px 0;
+}
+
 .fs-5 {
   font-size: 22px !important;
 }

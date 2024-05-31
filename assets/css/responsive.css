@@ -49,6 +49,14 @@
   .input-group {
     width: 95%;
   }
+
+  .btn-color {
+    padding: 8px;
+  }
+  
+  .madeby{
+    width: 90%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -57,7 +65,7 @@
   }
 
   .img-container img {
-    height: 30vh;
+    height: 40vh;
   }
 
   .img-container .button-add {
@@ -96,5 +104,20 @@
 
   .movie-image img:hover {
     width: 110px;
+  }
+
+
+  .footer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 0;
+}
+}
+
+@media (max-width: 400px) {
+  .navbar-brand img {
+    width: 17vw;
   }
 }
