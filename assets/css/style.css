@@ -346,7 +346,6 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  top: 0;
 }
 
 .img-footer img {

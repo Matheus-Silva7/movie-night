@@ -206,6 +206,7 @@ function createCard(movie, container) {
 
   function sla(addEvent) {
     addEvent.addEventListener('click', () => {
+      scrollTo(top)
 
       // Limpar o conteúdo atual do elemento 'main'
       main.innerHTML = "";
@@ -326,7 +327,7 @@ fetchMoviesDataTop();
 fetchSeriesDataTop();
 fetchSeriesData();
 
-const scrollAmount = 850;
+const scrollAmount = 250;
 
 
 //função de mover para a esquerda e para direita a lista do overflow hidden

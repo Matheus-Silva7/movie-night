@@ -57,6 +57,38 @@
   .madeby{
     width: 90%;
   }
+  
+
+  .movie-container{
+    flex-direction: column;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+
+  .imagem,
+  .imagem-desc {
+    display: flex;
+    align-items: end;
+    gap: 40px;
+  }
+
+  .imagem img,
+  .imagem-desc img{
+    width: 200px !important;
+  }
+
+  #exampleModalCenter .modal-content{
+    height: 50vh;
+  }
+  .movie {
+    width: 28%;
+  }
+
+  .btn-back{
+    margin-right: 80%;
+  }
+    
 }
 
 @media (max-width: 600px) {
@@ -78,6 +110,11 @@
 
   .button-add p {
     font-size: 0.75rem;
+  }
+
+  .movie-container .btn-color{
+    width: 81px;
+    height: 67px;
   }
 
   .img-container .items p {
@@ -114,10 +151,28 @@
     align-items: center;
     padding: 0;
 }
+
+.textos {
+  width: 100%;
+  padding: 10px;
+}
+
+.imagem img,
+.imagem-desc img{
+  width: 170px !important;
+}
 }
 
 @media (max-width: 400px) {
   .navbar-brand img {
     width: 17vw;
+  }
+  .imagem img,
+  .imagem-desc img{
+    width: 150px !important;
+  }
+  .movie-container .btn-color{
+    width: 81px;
+    height: 67px;
   }
 }

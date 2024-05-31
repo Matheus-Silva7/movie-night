@@ -74,7 +74,7 @@ function searchMovies() {
               mainSearch.innerHTML = `
               <button class="btn-back"><i class="fa-solid fa-arrow-left"></i></button>
                   <div class="container movie-container">
-                      <div class="imagem">
+                      <div class="imagem-desc">
                           <img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" alt="">
                           <button type="button" id="${movie.id}" class="btn btn-secondary btn-lg btn-color botaoLado"><span class="material-symbols-outlined">
                           <i class="fa-solid fa-plus"></i>

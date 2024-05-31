@@ -35,7 +35,7 @@
 }
 
 .container {
-    max-width: 90vw;
+    max-width: 100%;
     height: auto;
     background-size: cover;
     display: grid;
