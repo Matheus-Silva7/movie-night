@@ -399,10 +399,11 @@ footer {
 }
 
 #main-search img {
-  width: 100%;
+  width: 300px;
 }
 
 #main-search p {
+  color: #000;
   text-align: center;
 }
 

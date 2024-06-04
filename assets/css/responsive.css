@@ -98,6 +98,10 @@
     font-size: 1.3rem;
   }
 
+  #main-search img {
+    width: 100%;
+  }
+
   .overview{
     padding: 2rem 0;
   }
