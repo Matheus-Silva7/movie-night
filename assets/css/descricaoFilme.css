@@ -65,8 +65,9 @@
 }
 
 .textos h1,
-.textos h2 {
-    color: white;
+.textos h2,
+.textos p {
+    color: white !important;
 }
 
 .fa-star{

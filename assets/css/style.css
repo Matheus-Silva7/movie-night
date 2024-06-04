@@ -179,7 +179,7 @@ h5 {
 }
 
 .navbar-brand img {
-  width: 10vw;
+  width: 8vw;
   margin: 10px;
 }
 
@@ -413,6 +413,8 @@ footer {
   width: 30px;
   height: 30px;
   border-radius: 5px;
+  margin: 10px;
+  margin-right: 90%;
 }
 
 #main-search .btn-back:hover {
